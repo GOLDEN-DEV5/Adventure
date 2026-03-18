@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Golden Adventures – Gilgit Baltistan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:   #fdf8f2;
+      --sand:    #f0e6d3;
+      --brown:   #8b5e3c;
+      --dark:    #2c1f14;
+      --green:   #000000;
+      --sky:     #d6eaf8;
+      --white:   #ffffff;
+      --border:  #ddd0be;
+    }
+
+    body { font-family: 'Lato', sans-serif; background: var(--cream); color: var(--dark); }
+
+    /* NAV */
+    nav {
+      background: var(--white);
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 40px;
+      height: 68px;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--brown); text-decoration: none; }
+    .nav-logo span { color: var(--green); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--dark); font-size: 0.95rem; font-weight: 700; letter-spacing: 0.5px; padding-bottom: 4px; border-bottom: 2px solid transparent; }
+    .nav-links a:hover, .nav-links a.active { border-color: var(--brown); color: var(--brown); transform:translateY(-10px); transition: 0.6s ease-out; }
+    /* HAMBURGER BUTTON */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--dark);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* HAMBURGER ACTIVE (X shape) */
+.hamburger.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* MOBILE STYLES */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-bottom: 2px solid var(--border);
+    padding: 16px 24px 24px;
+    gap: 0;
+    z-index: 99;
+  }
+  .nav-links.open {
+    display: flex;
+  }
+  .nav-links li {
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-links li:last-child {
+    border-bottom: none;
+  }
+  .nav-links a {
+    display: block;
+    padding: 14px 4px;
+    font-size: 1rem;
+  }
+}
+    
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #e8f4fd 0%, #f0e6d3 60%, #e0efe5 100%);
+      padding: 80px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+      background-image: url(img/skardu/kharpocho-fort_PhotoGrid.png);
+    }
+    .hero-text { max-width: 560px; }
+    .hero-text .tag { font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--green); font-weight: 700; margin-bottom: 14px; }
+    .hero-text h1 { font-family: 'Playfair Display', serif; font-size: 3rem; line-height: 1.2; color: var(--dark); margin-bottom: 20px; }
+    .hero-text h1 span { color: var(--brown); }
+    .hero-text p { font-size: 1.05rem; color: #000000; line-height: 1.8; margin-bottom: 32px;}
+    .btn { display: inline-block; background: var(--brown); color: var(--white); padding: 14px 32px; border-radius: 4px; text-decoration: none; font-weight: 700; font-size: 0.95rem; margin-right: 12px; }
+    .btn:hover{transform: translateY(-5px); transition: 0.6s ease;
+    }
+    .btn-outline { background: black; color: white; border: 2px solid var(--green); }
+    .btn-outline:hover{
+      background-color: #000000;
+      color: white;
+      transform: translateY(-5px);
+      transition: 0.6s ease;
+    }
+
+    /* STATS */
+    .stats { background: var(--brown); display: flex; justify-content: center; flex-wrap: wrap; gap: 0; }
+    .stat { padding: 28px 60px; text-align: center; border-right: 1px solid rgba(255,255,255,0.2); }
+    .stat:last-child { border-right: none; }
+    .stat h3 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--white); }
+    .stat p { font-size: 0.85rem; color: rgba(255,255,255,0.75); margin-top: 4px; letter-spacing: 1px; }
+
+    /* SECTION */
+    section { padding: 70px 40px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--dark); margin-bottom: 10px; }
+    .section-sub { color: #7a6855; font-size: 1rem; margin-bottom: 40px; max-width: 500px; line-height: 1.7; }
+    .divider { width: 50px; height: 3px; background: var(--brown); margin-bottom: 16px; }
+
+    /* DESTINATIONS GRID */
+    .dest-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px; }
+    .dest-card { background: var(--white); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+    .dest-card:hover{transform: translateY(-10px); transition: 0.6s ease; cursor: pointer;}
+    .dest-card .thumb { height: 160px; background: var(--sand); display: flex; align-items: center; justify-content: center; font-size: 3.5rem;}
+    .dest-card .info { padding: 18px; }
+    .dest-card h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 6px; }
+    .dest-card p { font-size: 0.88rem; color: #7a6855; line-height: 1.6; }
+    .dest-card a { display: inline-block; margin-top: 12px; font-size: 0.85rem; font-weight: 700; color: var(--brown); text-decoration: none; }
+    .thumb img{width: 100%;
+  height:180px;
+  object-fit: cover;
+  object-position: center;
+  display: block;}
+
+    /* WHY US */
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 24px; }
+    .why-card { background: var(--sand); border-radius: 8px; padding: 28px 22px; }
+    .why-card .icon { font-size: 2.2rem; margin-bottom: 14px; }
+    .why-card h4 { font-weight: 700; margin-bottom: 8px; }
+    .why-card p { font-size: 0.88rem; color: #6b5440; line-height: 1.6; }
+
+    /* FOOTER */
+    footer { background: var(--dark); color: rgba(255,255,255,0.7); padding: 50px 40px 24px; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 40px; margin-bottom: 36px; }
+    .footer-col h5 { color: var(--white); font-family: 'Playfair Display', serif; margin-bottom: 16px; font-size: 1.05rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 8px; }
+    .footer-col ul a { text-decoration: none; color: rgba(255,255,255,0.6); font-size: 0.9rem; }
+    .footer-col ul a:hover { color: var(--white); }
+    .footer-col p { font-size: 0.9rem; line-height: 1.7; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center; font-size: 0.85rem; color: rgba(255,255,255,0.4); }
+
+    @media(max-width:700px){
+      .hero { padding: 50px 20px; }
+      .hero-text h1 { font-size: 2.1rem; }
+      .hero-img { width: 100%; }
+      nav { padding: 0 20px; }
+      .nav-links { gap: 16px; }
+      section { padding: 50px 20px; }
+      .stat { padding: 20px 30px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+  <a class="nav-logo" href="index.html">Golden <span>Adventures</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="destinations.html">Destinations</a></li>
+    <li><a href="tours.html">Tours</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-text">
+    <div class="tag">Welcome to Gilgit Baltistan</div>
+    <h1>Explore the Roof of the World</h1>
+    <p>Golden Adventures brings you unforgettable journeys through the majestic mountains, turquoise lakes, and ancient valleys of Gilgit Baltistan — Pakistan's most breathtaking destination.</p>
+    <a href="tours.html" class="btn">View Tour Packages</a>
+    <a href="destinations.html" class="btn btn-outline">Explore Destinations</a>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><h3>500+</h3><p>Happy Travelers</p></div>
+  <div class="stat"><h3>15+</h3><p>Destinations</p></div>
+  <div class="stat"><h3>10</h3><p>Years Experience</p></div>
+  <div class="stat"><h3>50+</h3><p>Tour Packages</p></div>
+</div>
+
+<!-- TOP DESTINATIONS -->
+<section>
+  <div class="divider"></div>
+  <h2 class="section-title">Top Destinations</h2>
+  <p class="section-sub">From the towering Karakoram peaks to the serene Hunza Valley, discover the finest places Gilgit Baltistan has to offer.</p>
+  <div class="dest-grid">
+    <div class="dest-card">
+      <div class="thumb">
+        <img src="img/hunza.jpg" alt="">
+      </div>
+      <div class="info">
+        <h4>Hunza Valley</h4>
+        <p>A paradise valley surrounded by snow-capped peaks, ancient forts, and friendly locals.</p>
+        <a href="destinations.html">Learn More →</a>
+      </div>
+    </div>
+    <div class="dest-card">
+      <div class="thumb"><img src="img/atabad.jpg" alt="" height="180px"></div>
+      <div class="info">
+        <h4>Attabad Lake</h4>
+        <p>Stunning turquoise lake formed by a landslide — one of GB's most photographed spots.</p>
+        <a href="destinations.html">Learn More →</a>
+      </div>
+    </div>
+    <div class="dest-card">
+      <div class="thumb"><img src="img/skardu.jpg" alt="" height="180px"></div>
+      <div class="info">
+        <h4>Skardu</h4>
+        <p>Gateway to K2 and home to Shangrila Resort, cold deserts, and pristine river valleys.</p>
+        <a href="destinations.html">Learn More →</a>
+      </div>
+    </div>
+    <div class="dest-card">
+      <div class="thumb"><img src="img/fairymedow.jpg" alt="" height="180px"></div>
+      <div class="info">
+        <h4>Fairy Meadows</h4>
+        <p>Lush meadows at the base of Nanga Parbat — the world's 9th highest mountain.</p>
+        <a href="destinations.html">Learn More →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section style="background: var(--white);">
+  <div class="divider"></div>
+  <h2 class="section-title">Why Choose Golden Adventures?</h2>
+  <p class="section-sub">We are a local team passionate about sharing the beauty of our homeland with the world.</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="icon">🧭</div>
+      <h4>Local Expertise</h4>
+      <p>Our guides are born and raised in GB, giving you authentic insider knowledge.</p>
+    </div>
+    <div class="why-card">
+      <div class="icon">🛡️</div>
+      <h4>Safe & Reliable</h4>
+      <p>Safety is our top priority — from vehicles to accommodations and trails.</p>
+    </div>
+    <div class="why-card">
+      <div class="icon">💰</div>
+      <h4>Best Value</h4>
+      <p>Competitive pricing with no hidden charges. Quality travel at fair costs.</p>
+    </div>
+    <div class="why-card">
+      <div class="icon">📞</div>
+      <h4>24/7 Support</h4>
+      <p>Our team is always available to assist you throughout your journey.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h5>Golden Adventures</h5>
+      <p>Your trusted travel partner for exploring the stunning landscapes of Gilgit Baltistan, Pakistan.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Quick Links</h5>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="destinations.html">Destinations</a></li>
+        <li><a href="tours.html">Tour Packages</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Popular Spots</h5>
+      <ul>
+        <li><a href="destinations.html">Hunza Valley</a></li>
+        <li><a href="destinations.html">Attabad Lake</a></li>
+        <li><a href="destinations.html">Skardu</a></li>
+        <li><a href="destinations.html">Fairy Meadows</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="#">📍 Gilgit, Gilgit Baltistan</a></li>
+        <li><a href="tel:03169186572">📞 0316-9186572 (Call & WhatsApp)</a></li>
+        <li><a href="mailto:samiabba110@gmail.com">✉️ samiabba110@gmail.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 Golden Adventures. All rights reserved.</div>
+</footer>
+<script>
+  function toggleMenu() {
+    const nav = document.getElementById('navLinks');
+    const btn = document.getElementById('hamburger');
+    nav.classList.toggle('open');
+    btn.classList.toggle('active');
+  }
+
+  // Close menu when a link is clicked
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('active');
+    });
+  });
+</script>
+
+</body>
+</html>
