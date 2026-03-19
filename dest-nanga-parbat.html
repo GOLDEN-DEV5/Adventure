@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nanga Parbat Base Camp – Golden Adventures</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+:root { --cream:#fdf8f2; --sand:#f0e6d3; --brown:#8b5e3c; --dark:#2c1f14; --green:#4a7c59; --white:#ffffff; --border:#ddd0be; }
+body { font-family:'Lato',sans-serif; background:var(--cream); color:var(--dark); }
+nav { background:var(--white); border-bottom:2px solid var(--border); display:flex; justify-content:space-between; align-items:center; padding:0 40px; height:68px; position:sticky; top:0; z-index:100; }
+.nav-logo { font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--brown); text-decoration:none; }
+.nav-logo span { color:var(--green); }
+.nav-links { display:flex; gap:32px; list-style:none; }
+.nav-links a { text-decoration:none; color:var(--dark); font-size:0.95rem; font-weight:700; padding-bottom:4px; border-bottom:2px solid transparent; }
+.nav-links a:hover { border-color:var(--brown); color:var(--brown); }
+.dest-hero { position:relative; height:480px; overflow:hidden; }
+.dest-hero img { width:100%; height:100%; object-fit:cover; }
+.dest-hero .overlay { position:absolute; inset:0; background:linear-gradient(to bottom,rgba(0,0,0,0.1),rgba(0,0,0,0.55)); display:flex; flex-direction:column; justify-content:flex-end; padding:40px; }
+.dest-hero .breadcrumb { font-size:0.82rem; color:rgba(255,255,255,0.8); margin-bottom:10px; }
+.dest-hero .breadcrumb a { color:rgba(255,255,255,0.8); text-decoration:none; }
+.dest-hero h1 { font-family:'Playfair Display',serif; font-size:3rem; color:#fff; margin-bottom:10px; }
+.dest-hero .meta-row { display:flex; gap:20px; flex-wrap:wrap; }
+.dest-hero .meta-row span { background:rgba(255,255,255,0.18); color:#fff; padding:5px 14px; border-radius:20px; font-size:0.85rem; backdrop-filter:blur(4px); }
+.dest-body { max-width:1100px; margin:0 auto; padding:60px 40px; display:grid; grid-template-columns:1fr 320px; gap:50px; }
+.dest-main h2 { font-family:'Playfair Display',serif; font-size:1.7rem; margin-bottom:14px; margin-top:36px; }
+.dest-main h2:first-child { margin-top:0; }
+.dest-main p { font-size:0.97rem; color:#5a4a38; line-height:1.85; margin-bottom:14px; }
+.divider { width:50px; height:3px; background:var(--brown); margin-bottom:16px; }
+.gallery { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0 36px; }
+.gallery img { width:100%; height:180px; object-fit:cover; border-radius:7px; border:1px solid var(--border); }
+.gallery img.wide { grid-column:span 2; height:240px; }
+.highlights-list { list-style:none; margin-bottom:24px; }
+.highlights-list li { display:flex; gap:12px; align-items:flex-start; padding:10px 0; border-bottom:1px solid var(--border); font-size:0.93rem; color:#5a4a38; line-height:1.6; }
+.highlights-list li span.ico { font-size:1.2rem; flex-shrink:0; }
+.tips-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:16px; }
+.tip-card { background:var(--sand); border-radius:8px; padding:16px; }
+.tip-card .icon { font-size:1.5rem; margin-bottom:8px; }
+.tip-card h6 { font-weight:700; margin-bottom:4px; font-size:0.88rem; }
+.tip-card p { font-size:0.82rem; color:#6b5440; line-height:1.5; }
+.info-box { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:24px; margin-bottom:20px; }
+.info-box h4 { font-family:'Playfair Display',serif; font-size:1.1rem; margin-bottom:16px; }
+.info-row { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--border); font-size:0.88rem; }
+.info-row:last-child { border-bottom:none; }
+.info-row .label { color:#8a7260; font-weight:700; }
+.info-row .val { color:var(--dark); text-align:right; }
+.book-box { background:var(--brown); border-radius:10px; padding:24px; text-align:center; }
+.book-box p { color:rgba(255,255,255,0.85); font-size:0.9rem; margin-bottom:16px; line-height:1.6; }
+.book-box a { display:block; background:var(--white); color:var(--brown); padding:13px; border-radius:6px; font-weight:700; text-decoration:none; font-size:0.95rem; margin-bottom:10px; }
+.book-box .phone { color:rgba(255,255,255,0.9); font-size:0.88rem; }
+footer { background:var(--dark); color:rgba(255,255,255,0.7); padding:50px 40px 24px; }
+.footer-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:40px; margin-bottom:36px; }
+.footer-col h5 { color:var(--white); font-family:'Playfair Display',serif; margin-bottom:16px; }
+.footer-col ul { list-style:none; }
+.footer-col ul li { margin-bottom:8px; }
+.footer-col ul a { text-decoration:none; color:rgba(255,255,255,0.6); font-size:0.9rem; }
+.footer-col p { font-size:0.9rem; line-height:1.7; }
+.footer-bottom { border-top:1px solid rgba(255,255,255,0.1); padding-top:20px; text-align:center; font-size:0.85rem; color:rgba(255,255,255,0.4); }
+@media(max-width:900px){ .dest-body{grid-template-columns:1fr;} }
+@media(max-width:600px){ nav{padding:0 20px;} .nav-links{gap:16px;} .dest-hero{height:300px;} .dest-hero h1{font-size:2rem;} .dest-body{padding:36px 20px;} .gallery{grid-template-columns:1fr;} .gallery img.wide{grid-column:span 1;} .tips-grid{grid-template-columns:1fr;} }
+/* HAMBURGER BUTTON */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--dark);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* HAMBURGER ACTIVE (X shape) */
+.hamburger.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* MOBILE STYLES */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-bottom: 2px solid var(--border);
+    padding: 16px 24px 24px;
+    gap: 0;
+    z-index: 99;
+  }
+  .nav-links.open {
+    display: flex;
+  }
+  .nav-links li {
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-links li:last-child {
+    border-bottom: none;
+  }
+  .nav-links a {
+    display: block;
+    padding: 14px 4px;
+    font-size: 1rem;
+  }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">Golden <span>Adventures</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="destinations.html">Destinations</a></li>
+    <li><a href="tours.html">Tours</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+<div class="dest-hero">
+  <img src="img/nangaparbat/heroimg.jpg" alt="Nanga Parbat Base Camp"/>
+  <div class="overlay">
+    <div class="breadcrumb"><a href="destinations.html">← Destinations</a></div>
+    <h1>Nanga Parbat Base Camp</h1>
+    <div class="meta-row"><span>📍 Diamer District, GB</span><span>📏 Altitude: 4,200m (13,780 ft)</span><span>🕐 5–7 Days Ideal</span></div>
+  </div>
+</div>
+<div class="dest-body">
+  <div class="dest-main">
+    <div class="divider"></div>
+    <h2>About Nanga Parbat Base Camp</h2>
+    <p>Nanga Parbat, standing at 8,126 metres, is the world's ninth-highest mountain and one of the most legendary peaks in all of mountaineering. Known as 'Diamer' (King of Mountains) in local Shina language, and nicknamed the 'Killer Mountain' by climbers due to the extraordinarily high number of fatalities on its slopes, Nanga Parbat is a peak that commands awe, respect and wonder in equal measure.</p>
+<p>The trek to Nanga Parbat Base Camp is one of the great trekking experiences in all of Asia. The journey takes trekkers through spectacular forest landscapes, past the magical Fairy Meadows, through the Beyal Camp area and ultimately to the base of the mountain's enormous Raikot Face — a wall of ice and rock 4,500 metres high, one of the largest mountain faces on Earth.</p>
+<p>The base camp sits at around 4,200m and offers extraordinarily close views of the mountain's northern face. The surrounding landscape of moraines, glaciers, wildflower-carpeted meadows and ancient forests creates an experience that is equal parts adventure and spiritual communion with nature.</p>
+    <div class="gallery"><img class="wide" src="img/nangaparbat/panaroma.png" alt="Nanga Parbat panorama"/>
+<img src="img/fairymedows/nangaparbat.jpg"/>
+<img src="img/fairymedows/beyalcamp.jpg" alt="Beyal Camp area"/></div>
+    <h2>Top Attractions & Activities</h2>
+    <ul class="highlights-list"><li><span class="ico">🏔️</span><div><strong>Nanga Parbat Base Camp</strong> – Reach the 4,200m base camp beneath the Raikot Face — one of the biggest mountain faces on Earth. A life-changing experience for any trekker.</div></li>
+<li><span class="ico">⛺</span><div><strong>Beyal Camp</strong> – An intermediate camp at 3,500m with stunning views of the Raikot Face. Great for acclimatization before heading higher.</div></li>
+<li><span class="ico">🌿</span><div><strong>Fairy Meadows</strong> – The starting point for the trek, offering spectacular views and a magical forest camping experience.</div></li>
+<li><span class="ico">🦅</span><div><strong>Wildlife Spotting</strong> – Eagles, marmots, Himalayan ibex, and even snow leopards have been spotted in the area around the trek.</div></li>
+<li><span class="ico">📸</span><div><strong>Sunset Photography</strong> – The golden light on Nanga Parbat's snow and ice at sunset is a photographer's dream — among the most dramatic mountain scenes in the world.</div></li></ul>
+    <h2>Travel Tips</h2>
+    <div class="tips-grid"><div class="tip-card"><div class="icon">🧗</div><h6>Fitness Required</h6><p>This is a challenging multi-day trek. Good physical fitness and prior trekking experience is strongly recommended.</p></div>
+<div class="tip-card"><div class="icon">🎒</div><h6>Gear Up</h6><p>Bring warm layers, quality trekking boots, rain gear, and a sleeping bag rated to -10°C. Nights at altitude are freezing.</p></div>
+<div class="tip-card"><div class="icon">🗓️</div><h6>Best Season</h6><p>June to September. July and August offer the most stable weather and least risk of snowfall on the trail.</p></div>
+<div class="tip-card"><div class="icon">👨‍🦯</div><h6>Hire a Guide</h6><p>Always trek with an experienced local guide. Golden Adventures provides experienced certified guides for this route.</p></div></div>
+  </div>
+  <div class="dest-sidebar">
+    <div class="info-box">
+      <h4>Quick Facts</h4>
+      <div class="info-row"><span class="label">Location</span><span class="val">Diamer District, GB</span></div>
+      <div class="info-row"><span class="label">Altitude</span><span class="val">4,200m (13,780 ft)</span></div>
+      <div class="info-row"><span class="label">Best Time</span><span class="val">June – September</span></div>
+      <div class="info-row"><span class="label">Ideal Stay</span><span class="val">5–7 Days</span></div>
+      <div class="info-row"><span class="label">Trek Start</span><span class="val">Raikot Bridge / Fairy Meadows</span></div>
+<div class="info-row"><span class="label">Difficulty</span><span class="val">Challenging</span></div>
+<div class="info-row"><span class="label">Peak Height</span><span class="val">8,126m (9th Highest)</span></div>
+    </div>
+    <div class="book-box">
+      <p>Trek to Nanga Parbat Base Camp with our expert guides. Book your adventure today!</p>
+      <a href="tours.html">View Tour Packages</a>
+      <a href="contact.html">Book Now</a>
+      <div class="phone">📞 0316-9186572</div>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col"><h5>Golden Adventures</h5><p>Your trusted travel partner for Gilgit Baltistan, Pakistan.</p></div>
+    <div class="footer-col"><h5>Quick Links</h5><ul><li><a href="index.html">Home</a></li><li><a href="destinations.html">Destinations</a></li><li><a href="tours.html">Tours</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h5>Contact</h5><ul><li><a href="#">📍 Gilgit, Gilgit Baltistan</a></li><li><a href="tel:03169186572">📞 0316-9186572</a></li><li><a href="mailto:samiabba110@gmail.com">✉️ samiabba110@gmail.com</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">© 2025 Golden Adventures. All rights reserved.</div>
+</footer>
+<script>
+  function toggleMenu() {
+    const nav = document.getElementById('navLinks');
+    const btn = document.getElementById('hamburger');
+    nav.classList.toggle('open');
+    btn.classList.toggle('active');
+  }
+
+  // Close menu when a link is clicked
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('active');
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Destinations – Golden Adventures</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #fdf8f2; --sand: #f0e6d3; --brown: #8b5e3c; --dark: #2c1f14;
+      --green: #000000; --white: #ffffff; --border: #ddd0be;
+    }
+    body { font-family: 'Lato', sans-serif; background: var(--cream); color: var(--dark); }
+
+    nav {
+      background: var(--white); border-bottom: 2px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 40px; height: 68px; position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--brown); text-decoration: none; }
+    .nav-logo span { color: var(--green); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--dark); font-size: 0.95rem; font-weight: 700; letter-spacing: 0.5px; padding-bottom: 4px; border-bottom: 2px solid transparent; }
+    .nav-links a:hover, .nav-links a.active { border-color: var(--brown); color: var(--brown); transition: 0.6s ease; transform: translate(10px);}
+    /* HAMBURGER BUTTON */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--dark);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* HAMBURGER ACTIVE (X shape) */
+.hamburger.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* MOBILE STYLES */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-bottom: 2px solid var(--border);
+    padding: 16px 24px 24px;
+    gap: 0;
+    z-index: 99;
+  }
+  .nav-links.open {
+    display: flex;
+  }
+  .nav-links li {
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-links li:last-child {
+    border-bottom: none;
+  }
+  .nav-links a {
+    display: block;
+    padding: 14px 4px;
+    font-size: 1rem;
+  }
+}
+
+    /* PAGE HEADER */
+    .page-header {
+      background: linear-gradient(135deg, #d6eaf8 0%, #f0e6d3 100%);
+      padding: 60px 40px;
+      text-align: center;
+      background-image: url(img/skardu.jpg);
+      background-size: cover;
+    }
+    .page-header .tag { font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--green); font-weight: 700; margin-bottom: 12px; }
+    .page-header h1 { font-family: 'Playfair Display', serif; font-size: 2.6rem; color:black; margin-bottom: 12px;}
+    .page-header p { color: #000000; font-size: 1rem; max-width: 520px; margin: 0 auto; line-height: 1.7; }
+
+    /* FILTER */
+    .filter-bar { background: var(--white); border-bottom: 1px solid var(--border); padding: 18px 40px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .filter-btn { padding: 8px 20px; border-radius: 20px; border: 2px solid var(--border); background: transparent; cursor: pointer; font-family: 'Lato', sans-serif; font-size: 0.88rem; font-weight: 700; color: var(--dark); }
+    .filter-btn.active, .filter-btn:hover { border-color: var(--brown); background: var(--brown); color: var(--white); }
+
+    /* DESTINATIONS */
+    .dest-section { padding: 60px 40px; }
+    .dest-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px; }
+
+    .dest-card { background: var(--white); border-radius: 10px; border: 1px solid var(--border); overflow: hidden; }
+    .dest-card:hover{transform: translateY(-10px); transition: 0.6s ease;}
+    .dest-card .thumb { height: 200px; display: flex; align-items: center; justify-content: center; font-size: 4.5rem; overflow: hidden; }
+    .thumb-blue   { background: #d6eaf8; }
+    .thumb-green  { background: #d5f0e0; }
+    .thumb-sand   { background: #f0e6d3; }
+    .thumb-purple { background: #e8d5f0; }
+    .thumb-sky    { background: #d0ecf5; }
+    .thumb-warm   { background: #fde8d0; }
+
+    .dest-card .info { padding: 22px; }
+    .dest-card .badge { display: inline-block; background: var(--sand); color: var(--brown); font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; padding: 3px 10px; border-radius: 12px; margin-bottom: 10px; text-transform: uppercase; }
+    .dest-card h4 { font-family: 'Playfair Display', serif; font-size: 1.25rem; margin-bottom: 8px; }
+    .dest-card p { font-size: 0.9rem; color: #7a6855; line-height: 1.7; }
+    .dest-meta { display: flex; gap: 16px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.85rem; color: #8a7260; }
+    .dest-meta span { display: flex; align-items: center; gap: 5px; }
+
+    /* HIGHLIGHTS BAND */
+    .highlights { background: var(--sand); padding: 60px 40px; }
+    .divider { width: 50px; height: 3px; background: var(--brown); margin-bottom: 16px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 10px; }
+    .section-sub { color: #7a6855; margin-bottom: 36px; line-height: 1.7; }
+    .highlights-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+    .hl-card { background: var(--white); border-radius: 8px; padding: 24px 20px; border: 1px solid var(--border); }
+    .hl-card .icon { font-size: 2rem; margin-bottom: 12px; }
+    .hl-card h5 { font-weight: 700; margin-bottom: 6px; }
+    .hl-card p { font-size: 0.87rem; color: #7a6855; line-height: 1.6; }
+
+    footer { background: var(--dark); color: rgba(255,255,255,0.7); padding: 50px 40px 24px; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 40px; margin-bottom: 36px; }
+    .footer-col h5 { color: var(--white); font-family: 'Playfair Display', serif; margin-bottom: 16px; font-size: 1.05rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 8px; }
+    .footer-col ul a { text-decoration: none; color: rgba(255,255,255,0.6); font-size: 0.9rem; }
+    .footer-col ul a:hover { color: var(--white); }
+    .footer-col p { font-size: 0.9rem; line-height: 1.7; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center; font-size: 0.85rem; color: rgba(255,255,255,0.4); }
+
+    @media(max-width:700px){
+      nav { padding: 0 20px; } .nav-links { gap: 16px; }
+      .page-header { padding: 40px 20px; }
+      .dest-section { padding: 40px 20px; }
+      .filter-bar { padding: 14px 20px; }
+      .highlights { padding: 40px 20px; }
+    }
+    @media (max-width: 768px) {
+      .page-header{background-size: 400% 500%}
+  
+}
+     </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Golden <span>Adventures</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="destinations.html">Destinations</a></li>
+    <li><a href="tours.html">Tours</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<div class="page-header">
+  <div class="tag">Gilgit Baltistan</div>
+  <h1>Discover Amazing Destinations</h1>
+  <p>From snowy peaks to lush meadows and sparkling lakes — every corner of Gilgit Baltistan has a story to tell.</p>
+</div>
+
+<div class="filter-bar">
+  <button class="filter-btn active">All</button>
+  <button class="filter-btn">Valleys</button>
+  <button class="filter-btn">Lakes</button>
+  <button class="filter-btn">Mountains</button>
+  <button class="filter-btn">Cities</button>
+</div>
+
+<section class="dest-section">
+  <div class="dest-grid">
+
+    <div class="dest-card">
+      <div class="thumb thumb-green"><img src="img/hunza.jpg" alt="Hunza Valley" style="width:100%;height:100%;object-fit:cover;"/></div>
+      <div class="info">
+        <span class="badge">Valley</span>
+        <h4>Hunza Valley</h4>
+        <p>One of the most beautiful valleys in the world. Famous for its cherry blossoms, Baltit Fort, and panoramic mountain views including Rakaposhi and Ultar Sar.</p>
+        <div class="dest-meta"><span>📍 Hunza District</span><span>🕐 3–5 Days Ideal</span></div>
+        <a href="dest-hunza.html" style="display:inline-block;margin-top:14px;font-size:0.85rem;font-weight:700;color:var(--brown);text-decoration:none;">Explore Hunza →</a>
+      </div>
+    </div>
+
+    <div class="dest-card">
+      <div class="thumb thumb-blue"><img src="img/atabad.jpg" alt="Attabad Lake" style="width:100%;height:100%;object-fit:cover;"/></div>
+      <div class="info">
+        <span class="badge">Lake</span>
+        <h4>Attabad Lake</h4>
+        <p>A vivid turquoise lake formed after a 2010 landslide. Boat rides on its crystal waters with dramatic mountains all around make it truly surreal.</p>
+        <div class="dest-meta"><span>📍 Gojal, Hunza</span><span>🕐 1–2 Days Ideal</span></div>
+        <a href="dest-attabad.html" style="display:inline-block;margin-top:14px;font-size:0.85rem;font-weight:700;color:var(--brown);text-decoration:none;">Explore Attabad →</a>
+      </div>
+    </div>
+
+    <div class="dest-card">
+      <div class="thumb thumb-sand"><img src="img/skardu.jpg" alt="Skardu" style="width:100%;height:100%;object-fit:cover;"/></div>
+      <div class="info">
+        <span class="badge">City</span>
+        <h4>Skardu</h4>
+        <p>The adventure capital of Pakistan. A base camp for K2 expeditions, home to Deosai Plains, Shangrila Resort, and the Satpara Lake.</p>
+        <div class="dest-meta"><span>📍 Skardu District</span><span>🕐 4–6 Days Ideal</span></div>
+        <a href="dest-skardu.html" style="display:inline-block;margin-top:14px;font-size:0.85rem;font-weight:700;color:var(--brown);text-decoration:none;">Explore Skardu →</a>
+      </div>
+    </div>
+
+    <div class="dest-card">
+      <div class="thumb thumb-warm"><img src="img/fairymedow.jpg" alt="Fairy Meadows" style="width:100%;height:100%;object-fit:cover;"/></div>
+      <div class="info">
+        <span class="badge">Meadow</span>
+        <h4>Fairy Meadows</h4>
+        <p>A breathtaking alpine meadow at 3,300m altitude, offering an unobstructed view of the mighty Nanga Parbat. A hiker's dream destination.</p>
+        <div class="dest-meta"><span>📍 Diamer District</span><span>🕐 2–3 Days Ideal</span></div>
+        <a href="dest-fairy-meadows.html" style="display:inline-block;margin-top:14px;font-size:0.85rem;font-weight:700;color:var(--brown);text-decoration:none;">Explore Fairy Meadows →</a>
+      </div>
+    </div>
+
+    <div class="dest-card">
+      <div class="thumb thumb-purple"><img src="img/nangaparbat.jpeg" alt="Nanga Parbat" style="width:100%;height:100%;object-fit:cover;"/></div>
+      <div class="info">
+        <span class="badge">Mountain</span>
+        <h4>Nanga Parbat Base Camp</h4>
+        <p>Trek to the base of the world's 9th highest peak. The "Killer Mountain" commands awe and respect, offering one of the world's most dramatic hiking experiences.</p>
+        <div class="dest-meta"><span>📍 Diamer District</span><span>🕐 5–7 Days Ideal</span></div>
+        <a href="dest-nanga-parbat.html" style="display:inline-block;margin-top:14px;font-size:0.85rem;font-weight:700;color:var(--brown);text-decoration:none;">Explore Nanga Parbat →</a>
+      </div>
+    </div>
+
+    <div class="dest-card">
+      <div class="thumb thumb-sky"><img src="img/deosai.jpg" alt="Deosai" style="width:100%;height:100%;object-fit:cover;"/></div>
+      <div class="info">
+        <span class="badge">Plains</span>
+        <h4>Deosai National Park</h4>
+        <p>One of the world's highest plateaus at 4,114m. Known as the "Land of Giants," it is home to the Himalayan brown bear and vast wildflower fields.</p>
+        <div class="dest-meta"><span>📍 Astore / Skardu</span><span>🕐 2–3 Days Ideal</span></div>
+        <a href="dest-deosai.html" style="display:inline-block;margin-top:14px;font-size:0.85rem;font-weight:700;color:var(--brown);text-decoration:none;">Explore Deosai →</a>
+      </div>
+    </div>
+
+    <div class="dest-card">
+      <div class="thumb thumb-green"><img src="img/naltar.jpg" alt="Naltar Valley" style="width:100%;height:100%;object-fit:cover;"/></div>
+      <div class="info">
+        <span class="badge">Valley</span>
+        <h4>Naltar Valley</h4>
+        <p>Famous for its three colorful lakes and natural pine forests. A perfect escape for nature lovers and also home to Pakistan Air Force ski resort.</p>
+        <div class="dest-meta"><span>📍 Gilgit District</span><span>🕐 2–3 Days Ideal</span></div>
+        <a href="dest-naltar.html" style="display:inline-block;margin-top:14px;font-size:0.85rem;font-weight:700;color:var(--brown);text-decoration:none;">Explore Naltar →</a>
+      </div>
+    </div>
+
+    <div class="dest-card">
+      <div class="thumb thumb-blue"><img src="img/satpara.jpeg" alt="Satpara Lake" style="width:100%;height:100%;object-fit:cover;"/></div>
+      <div class="info">
+        <span class="badge">Lake</span>
+        <h4>Satpara Lake</h4>
+        <p>A natural freshwater lake near Skardu with crystal clear blue water. It supplies drinking water to Skardu and is perfect for trout fishing and picnics.</p>
+        <div class="dest-meta"><span>📍 Skardu District</span><span>🕐 Half Day</span></div>
+        <a href="dest-satpara.html" style="display:inline-block;margin-top:14px;font-size:0.85rem;font-weight:700;color:var(--brown);text-decoration:none;">Explore Satpara →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="highlights">
+  <div class="divider"></div>
+  <h2 class="section-title">Nature Highlights</h2>
+  <p class="section-sub">What makes Gilgit Baltistan truly extraordinary.</p>
+  <div class="highlights-grid">
+    <div class="hl-card">
+      <div class="icon">🏔️</div>
+      <h5>Five 8000m Peaks</h5>
+      <p>GB is home to K2, Nanga Parbat, Gasherbrum I & II, and Broad Peak — five of the world's 14 highest summits.</p>
+    </div>
+    <div class="hl-card">
+      <div class="icon">🌸</div>
+      <h5>Cherry Blossom Season</h5>
+      <p>Every March–April, Hunza Valley bursts into pink and white blossoms — one of Asia's most magical sights.</p>
+    </div>
+    <div class="hl-card">
+      <div class="icon">⭐</div>
+      <h5>Stargazing Paradise</h5>
+      <p>With minimal light pollution, GB offers some of the clearest night skies in Asia for astronomy enthusiasts.</p>
+    </div>
+    <div class="hl-card">
+      <div class="icon">🐻</div>
+      <h5>Rare Wildlife</h5>
+      <p>Snow leopards, Himalayan brown bears, and Marco Polo sheep roam the national parks of Gilgit Baltistan.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h5>Golden Adventures</h5>
+      <p>Your trusted travel partner for exploring the stunning landscapes of Gilgit Baltistan, Pakistan.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Quick Links</h5>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="destinations.html">Destinations</a></li>
+        <li><a href="tours.html">Tour Packages</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Popular Spots</h5>
+      <ul>
+        <li><a href="#">Hunza Valley</a></li>
+        <li><a href="#">Attabad Lake</a></li>
+        <li><a href="#">Skardu</a></li>
+        <li><a href="#">Fairy Meadows</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="#">📍 Gilgit, Gilgit Baltistan</a></li>
+        <li><a href="#">📞 0316-9186572 (Call &amp; WhatsApp)</a></li>
+        <li><a href="#">✉️ <span class="__cf_email__" data-cfemail="abc2c5cdc4ebcdcad9c3cac5dfd9caddcec7d885dbc0">[email&#160;protected]</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <script>
+  function toggleMenu() {
+    const nav = document.getElementById('navLinks');
+    const btn = document.getElementById('hamburger');
+    nav.classList.toggle('open');
+    btn.classList.toggle('active');
+  }
+
+  // Close menu when a link is clicked
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('active');
+    });
+  });
+</script>
+<script>
+  function toggleMenu() {
+    const nav = document.getElementById('navLinks');
+    const btn = document.getElementById('hamburger');
+    nav.classList.toggle('open');
+    btn.classList.toggle('active');
+  }
+
+  // Close menu when a link is clicked
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('active');
+    });
+  });
+</script>

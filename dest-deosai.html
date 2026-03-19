@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Deosai National Park – Golden Adventures</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+:root { --cream:#fdf8f2; --sand:#f0e6d3; --brown:#8b5e3c; --dark:#2c1f14; --green:#4a7c59; --white:#ffffff; --border:#ddd0be; }
+body { font-family:'Lato',sans-serif; background:var(--cream); color:var(--dark); }
+nav { background:var(--white); border-bottom:2px solid var(--border); display:flex; justify-content:space-between; align-items:center; padding:0 40px; height:68px; position:sticky; top:0; z-index:100; }
+.nav-logo { font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--brown); text-decoration:none; }
+.nav-logo span { color:var(--green); }
+.nav-links { display:flex; gap:32px; list-style:none; }
+.nav-links a { text-decoration:none; color:var(--dark); font-size:0.95rem; font-weight:700; padding-bottom:4px; border-bottom:2px solid transparent; }
+.nav-links a:hover { border-color:var(--brown); color:var(--brown); }
+.dest-hero { position:relative; height:480px; overflow:hidden; }
+.dest-hero img { width:100%; height:100%; object-fit:cover; }
+.dest-hero .overlay { position:absolute; inset:0; background:linear-gradient(to bottom,rgba(0,0,0,0.1),rgba(0,0,0,0.55)); display:flex; flex-direction:column; justify-content:flex-end; padding:40px; }
+.dest-hero .breadcrumb { font-size:0.82rem; color:rgba(255,255,255,0.8); margin-bottom:10px; }
+.dest-hero .breadcrumb a { color:rgba(255,255,255,0.8); text-decoration:none; }
+.dest-hero h1 { font-family:'Playfair Display',serif; font-size:3rem; color:#fff; margin-bottom:10px; }
+.dest-hero .meta-row { display:flex; gap:20px; flex-wrap:wrap; }
+.dest-hero .meta-row span { background:rgba(255,255,255,0.18); color:#fff; padding:5px 14px; border-radius:20px; font-size:0.85rem; backdrop-filter:blur(4px); }
+.dest-body { max-width:1100px; margin:0 auto; padding:60px 40px; display:grid; grid-template-columns:1fr 320px; gap:50px; }
+.dest-main h2 { font-family:'Playfair Display',serif; font-size:1.7rem; margin-bottom:14px; margin-top:36px; }
+.dest-main h2:first-child { margin-top:0; }
+.dest-main p { font-size:0.97rem; color:#5a4a38; line-height:1.85; margin-bottom:14px; }
+.divider { width:50px; height:3px; background:var(--brown); margin-bottom:16px; }
+.gallery { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0 36px; }
+.gallery img { width:100%; height:180px; object-fit:cover; border-radius:7px; border:1px solid var(--border); }
+.gallery img.wide { grid-column:span 2; height:240px; }
+.highlights-list { list-style:none; margin-bottom:24px; }
+.highlights-list li { display:flex; gap:12px; align-items:flex-start; padding:10px 0; border-bottom:1px solid var(--border); font-size:0.93rem; color:#5a4a38; line-height:1.6; }
+.highlights-list li span.ico { font-size:1.2rem; flex-shrink:0; }
+.tips-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:16px; }
+.tip-card { background:var(--sand); border-radius:8px; padding:16px; }
+.tip-card .icon { font-size:1.5rem; margin-bottom:8px; }
+.tip-card h6 { font-weight:700; margin-bottom:4px; font-size:0.88rem; }
+.tip-card p { font-size:0.82rem; color:#6b5440; line-height:1.5; }
+.info-box { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:24px; margin-bottom:20px; }
+.info-box h4 { font-family:'Playfair Display',serif; font-size:1.1rem; margin-bottom:16px; }
+.info-row { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--border); font-size:0.88rem; }
+.info-row:last-child { border-bottom:none; }
+.info-row .label { color:#8a7260; font-weight:700; }
+.info-row .val { color:var(--dark); text-align:right; }
+.book-box { background:var(--brown); border-radius:10px; padding:24px; text-align:center; }
+.book-box p { color:rgba(255,255,255,0.85); font-size:0.9rem; margin-bottom:16px; line-height:1.6; }
+.book-box a { display:block; background:var(--white); color:var(--brown); padding:13px; border-radius:6px; font-weight:700; text-decoration:none; font-size:0.95rem; margin-bottom:10px; }
+.book-box .phone { color:rgba(255,255,255,0.9); font-size:0.88rem; }
+footer { background:var(--dark); color:rgba(255,255,255,0.7); padding:50px 40px 24px; }
+.footer-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:40px; margin-bottom:36px; }
+.footer-col h5 { color:var(--white); font-family:'Playfair Display',serif; margin-bottom:16px; }
+.footer-col ul { list-style:none; }
+.footer-col ul li { margin-bottom:8px; }
+.footer-col ul a { text-decoration:none; color:rgba(255,255,255,0.6); font-size:0.9rem; }
+.footer-col p { font-size:0.9rem; line-height:1.7; }
+.footer-bottom { border-top:1px solid rgba(255,255,255,0.1); padding-top:20px; text-align:center; font-size:0.85rem; color:rgba(255,255,255,0.4); }
+@media(max-width:900px){ .dest-body{grid-template-columns:1fr;} }
+@media(max-width:600px){ nav{padding:0 20px;} .nav-links{gap:16px;} .dest-hero{height:300px;} .dest-hero h1{font-size:2rem;} .dest-body{padding:36px 20px;} .gallery{grid-template-columns:1fr;} .gallery img.wide{grid-column:span 1;} .tips-grid{grid-template-columns:1fr;} }
+/* HAMBURGER BUTTON */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--dark);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* HAMBURGER ACTIVE (X shape) */
+.hamburger.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* MOBILE STYLES */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-bottom: 2px solid var(--border);
+    padding: 16px 24px 24px;
+    gap: 0;
+    z-index: 99;
+  }
+  .nav-links.open {
+    display: flex;
+  }
+  .nav-links li {
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-links li:last-child {
+    border-bottom: none;
+  }
+  .nav-links a {
+    display: block;
+    padding: 14px 4px;
+    font-size: 1rem;
+  }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">Golden <span>Adventures</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="destinations.html">Destinations</a></li>
+    <li><a href="tours.html">Tours</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+<div class="dest-hero">
+  <img src="img/deosai/header.jpg" alt="Deosai National Park"/>
+  <div class="overlay">
+    <div class="breadcrumb"><a href="destinations.html">← Destinations</a></div>
+    <h1>Deosai National Park</h1>
+    <div class="meta-row"><span>📍 Astore / Skardu, GB</span><span>📏 Altitude: 4,114m (13,497 ft)</span><span>🕐 2–3 Days Ideal</span></div>
+  </div>
+</div>
+<div class="dest-body">
+  <div class="dest-main">
+    <div class="divider"></div>
+    <h2>About Deosai National Park</h2>
+    <p>Deosai National Park is one of the world's most extraordinary high-altitude plateaus. Spread across 3,000 square kilometres at an average altitude of 4,114 metres above sea level, Deosai is the second-highest plateau in the world after Tibet. In summer, it transforms into a vast, rolling carpet of wildflowers in every colour imaginable — yellow buttercups, purple irises, pink primroses — stretching to the horizon under a wide open sky.</p>
+<p>Known locally as 'Sheosar' (Land of Giants), Deosai is one of the last sanctuaries for the critically endangered Himalayan brown bear. The park was established as a national park in 1993 specifically to protect this magnificent animal, and today the bear population has grown from just 19 individuals to over 50. Lucky visitors may spot bears grazing on the plateau in summer.</p>
+<p>The sheer scale and emptiness of Deosai is difficult to comprehend until you experience it. The plateau is roughly the size of Luxembourg, with not a single tree or building visible in any direction. Crystal-clear rivers wind through the grasslands, and the sky — unobstructed by mountains — puts on spectacular cloud shows. At night, the absence of any light pollution makes Deosai one of the finest stargazing locations on Earth.</p>
+    <div class="gallery"><img class="wide" src="img/deosai/panaroma.jpg" alt="Deosai Plains"/>
+<img src="img/deosai/Sheosar-Lake.jpg" alt="Sheosar Lake Deosai"/>
+<img src="img/deosai/bear.jpg" alt="Himalayan brown bear"/></div>
+    <h2>Top Attractions & Activities</h2>
+    <ul class="highlights-list"><li><span class="ico">🐻</span><div><strong>Himalayan Brown Bear</strong> – The star of Deosai. Over 50 bears roam the plateau in summer. Guided wildlife watching excursions from the park centre are available.</div></li>
+<li><span class="ico">🌊</span><div><strong>Sheosar Lake</strong> – A beautiful high-altitude lake in the heart of Deosai, its turquoise waters reflecting the surrounding hills. Perfect for picnics and photography.</div></li>
+<li><span class="ico">🌸</span><div><strong>Wildflower Season</strong> – July–August transforms Deosai into a multicoloured flower carpet stretching to the horizon — one of the most striking natural sights in South Asia.</div></li>
+<li><span class="ico">⭐</span><div><strong>Stargazing</strong> – With zero light pollution across 3,000 sq km, Deosai offers some of the most spectacular night skies on Earth.</div></li>
+<li><span class="ico">🎣</span><div><strong>River Fishing</strong> – The Deosai streams are rich with wild trout. Fishing with a permit is a popular activity in the park.</div></li></ul>
+    <h2>Travel Tips</h2>
+    <div class="tips-grid"><div class="tip-card"><div class="icon">🚙</div><h6>Access</h6><p>Deosai is accessible from both Skardu (3 hrs 4x4) and Astore (4 hrs). A 4-wheel drive vehicle is mandatory.</p></div>
+<div class="tip-card"><div class="icon">🧥</div><h6>Dress Warmly</h6><p>Even in July, temperatures drop sharply. Bring a thick jacket and warm sleeping gear for overnight stays.</p></div>
+<div class="tip-card"><div class="icon">🌧️</div><h6>Weather</h6><p>Weather changes rapidly at 4,000m. Always carry rain gear. Afternoon thunderstorms are common in summer.</p></div>
+<div class="tip-card"><div class="icon">🐻</div><h6>Wildlife Etiquette</h6><p>Keep distance from bears. Never feed or approach wildlife. Always follow park ranger guidelines.</p></div></div>
+  </div>
+  <div class="dest-sidebar">
+    <div class="info-box">
+      <h4>Quick Facts</h4>
+      <div class="info-row"><span class="label">Location</span><span class="val">Astore / Skardu, GB</span></div>
+      <div class="info-row"><span class="label">Altitude</span><span class="val">4,114m (13,497 ft)</span></div>
+      <div class="info-row"><span class="label">Best Time</span><span class="val">June – September</span></div>
+      <div class="info-row"><span class="label">Ideal Stay</span><span class="val">2–3 Days</span></div>
+      <div class="info-row"><span class="label">Area</span><span class="val">3,000 sq km</span></div>
+<div class="info-row"><span class="label">Status</span><span class="val">National Park (1993)</span></div>
+<div class="info-row"><span class="label">Famous For</span><span class="val">Brown Bear, Wildflowers</span></div>
+    </div>
+    <div class="book-box">
+      <p>Visit Deosai's wilderness with our experienced guides. A journey unlike any other!</p>
+      <a href="tours.html">View Tour Packages</a>
+      <a href="contact.html">Book Now</a>
+      <div class="phone">📞 0316-9186572</div>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col"><h5>Golden Adventures</h5><p>Your trusted travel partner for Gilgit Baltistan, Pakistan.</p></div>
+    <div class="footer-col"><h5>Quick Links</h5><ul><li><a href="index.html">Home</a></li><li><a href="destinations.html">Destinations</a></li><li><a href="tours.html">Tours</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h5>Contact</h5><ul><li><a href="#">📍 Gilgit, Gilgit Baltistan</a></li><li><a href="tel:03169186572">📞 0316-9186572</a></li><li><a href="mailto:samiabba110@gmail.com">✉️ samiabba110@gmail.com</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">© 2025 Golden Adventures. All rights reserved.</div>
+</footer>
+<script>
+  function toggleMenu() {
+    const nav = document.getElementById('navLinks');
+    const btn = document.getElementById('hamburger');
+    nav.classList.toggle('open');
+    btn.classList.toggle('active');
+  }
+
+  // Close menu when a link is clicked
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('active');
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Attabad Lake – Golden Adventures</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root { --cream:#fdf8f2; --sand:#f0e6d3; --brown:#8b5e3c; --dark:#2c1f14; --green:#4a7c59; --white:#ffffff; --border:#ddd0be; }
+    body { font-family:'Lato',sans-serif; background:var(--cream); color:var(--dark); }
+    nav { background:var(--white); border-bottom:2px solid var(--border); display:flex; justify-content:space-between; align-items:center; padding:0 40px; height:68px; position:sticky; top:0; z-index:100; }
+    .nav-logo { font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--brown); text-decoration:none; }
+    .nav-logo span { color:var(--green); }
+    .nav-links { display:flex; gap:32px; list-style:none; }
+    .nav-links a { text-decoration:none; color:var(--dark); font-size:0.95rem; font-weight:700; padding-bottom:4px; border-bottom:2px solid transparent; }
+    .nav-links a:hover { border-color:var(--brown); color:var(--brown); }
+    .dest-hero { position:relative; height:480px; overflow:hidden; }
+    .dest-hero img { width:100%; height:100%; object-fit:cover; }
+    .dest-hero .overlay { position:absolute; inset:0; background:linear-gradient(to bottom,rgba(0,0,0,0.1),rgba(0,0,0,0.55)); display:flex; flex-direction:column; justify-content:flex-end; padding:40px; }
+    .dest-hero .breadcrumb { font-size:0.82rem; color:rgba(255,255,255,0.8); margin-bottom:10px; }
+    .dest-hero .breadcrumb a { color:rgba(255,255,255,0.8); text-decoration:none; }
+    .dest-hero h1 { font-family:'Playfair Display',serif; font-size:3rem; color:#fff; margin-bottom:10px; }
+    .dest-hero .meta-row { display:flex; gap:20px; flex-wrap:wrap; }
+    .dest-hero .meta-row span { background:rgba(255,255,255,0.18); color:#fff; padding:5px 14px; border-radius:20px; font-size:0.85rem; backdrop-filter:blur(4px); }
+    .dest-body { max-width:1100px; margin:0 auto; padding:60px 40px; display:grid; grid-template-columns:1fr 320px; gap:50px; }
+    .dest-main h2 { font-family:'Playfair Display',serif; font-size:1.7rem; margin-bottom:14px; margin-top:36px; }
+    .dest-main h2:first-child { margin-top:0; }
+    .dest-main p { font-size:0.97rem; color:#5a4a38; line-height:1.85; margin-bottom:14px; }
+    .divider { width:50px; height:3px; background:var(--brown); margin-bottom:16px; }
+    .gallery { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0 36px; }
+    .gallery img { width:100%; height:180px; object-fit:cover; border-radius:7px; border:1px solid var(--border); }
+    .gallery img.wide { grid-column:span 2; height:240px; }
+    .highlights-list { list-style:none; margin-bottom:24px; }
+    .highlights-list li { display:flex; gap:12px; align-items:flex-start; padding:10px 0; border-bottom:1px solid var(--border); font-size:0.93rem; color:#5a4a38; line-height:1.6; }
+    .highlights-list li span.ico { font-size:1.2rem; flex-shrink:0; }
+    .tips-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:16px; }
+    .tip-card { background:var(--sand); border-radius:8px; padding:16px; }
+    .tip-card .icon { font-size:1.5rem; margin-bottom:8px; }
+    .tip-card h6 { font-weight:700; margin-bottom:4px; font-size:0.88rem; }
+    .tip-card p { font-size:0.82rem; color:#6b5440; line-height:1.5; }
+    .info-box { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:24px; margin-bottom:20px; }
+    .info-box h4 { font-family:'Playfair Display',serif; font-size:1.1rem; margin-bottom:16px; }
+    .info-row { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--border); font-size:0.88rem; }
+    .info-row:last-child { border-bottom:none; }
+    .info-row .label { color:#8a7260; font-weight:700; }
+    .info-row .val { color:var(--dark); text-align:right; }
+    .book-box { background:var(--brown); border-radius:10px; padding:24px; text-align:center; }
+    .book-box p { color:rgba(255,255,255,0.85); font-size:0.9rem; margin-bottom:16px; line-height:1.6; }
+    .book-box a { display:block; background:var(--white); color:var(--brown); padding:13px; border-radius:6px; font-weight:700; text-decoration:none; font-size:0.95rem; margin-bottom:10px; }
+    .book-box .phone { color:rgba(255,255,255,0.9); font-size:0.88rem; }
+    footer { background:var(--dark); color:rgba(255,255,255,0.7); padding:50px 40px 24px; }
+    .footer-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:40px; margin-bottom:36px; }
+    .footer-col h5 { color:var(--white); font-family:'Playfair Display',serif; margin-bottom:16px; }
+    .footer-col ul { list-style:none; }
+    .footer-col ul li { margin-bottom:8px; }
+    .footer-col ul a { text-decoration:none; color:rgba(255,255,255,0.6); font-size:0.9rem; }
+    .footer-col p { font-size:0.9rem; line-height:1.7; }
+    .footer-bottom { border-top:1px solid rgba(255,255,255,0.1); padding-top:20px; text-align:center; font-size:0.85rem; color:rgba(255,255,255,0.4); }
+    @media(max-width:900px){ .dest-body{grid-template-columns:1fr;} }
+    @media(max-width:600px){ nav{padding:0 20px;} .nav-links{gap:16px;} .dest-hero{height:300px;} .dest-hero h1{font-size:2rem;} .dest-body{padding:36px 20px;} .gallery{grid-template-columns:1fr;} .gallery img.wide{grid-column:span 1;} .tips-grid{grid-template-columns:1fr;} }
+    /* HAMBURGER BUTTON */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--dark);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* HAMBURGER ACTIVE (X shape) */
+.hamburger.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* MOBILE STYLES */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-bottom: 2px solid var(--border);
+    padding: 16px 24px 24px;
+    gap: 0;
+    z-index: 99;
+  }
+  .nav-links.open {
+    display: flex;
+  }
+  .nav-links li {
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-links li:last-child {
+    border-bottom: none;
+  }
+  .nav-links a {
+    display: block;
+    padding: 14px 4px;
+    font-size: 1rem;
+  }
+}
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">Golden <span>Adventures</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="destinations.html">Destinations</a></li>
+    <li><a href="tours.html">Tours</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<div class="dest-hero">
+  <img src="img/atabadlake/hero-atabad.jpg" alt="Attabad Lake" onerror="this.style.background='#d6eaf8'; this.style.display='block';"/>
+  <div class="overlay">
+    <div class="breadcrumb"><a href="destinations.html">← Destinations</a></div>
+    <h1>Attabad Lake</h1>
+    <div class="meta-row">
+      <span>📍 Gojal, Hunza</span>
+      <span>🏷️ Lake</span>
+      <span>🕐 1–2 Days Ideal</span>
+      <span>📏 Altitude: 2,638m</span>
+    </div>
+  </div>
+</div>
+
+<div class="dest-body">
+  <div class="dest-main">
+    <div class="divider"></div>
+    <h2>About Attabad Lake</h2>
+    <p>Attabad Lake is one of the most dramatically beautiful and geologically fascinating lakes in all of Pakistan. Located in Gojal Valley in the upper Hunza region, the lake was formed on January 4, 2010, when a massive landslide near the village of Attabad blocked the flow of the Hunza River. The resulting flood submerged entire villages under water and created this stunning 21-km-long turquoise lake over the following months.</p>
+    <p>Despite its tragic origins, Attabad Lake has become one of Gilgit Baltistan's most iconic tourist attractions. The lake's extraordinarily vivid turquoise and blue-green color is caused by the glacial silt suspended in its waters, which interacts with sunlight to create a breathtaking spectacle. The lake is surrounded by towering, bare rocky mountains, creating a stark and dramatic contrast that makes for unforgettable photography.</p>
+    <p>Today, boat rides on Attabad Lake are one of the most popular tourist activities in the region. The KKH (Karakoram Highway) also passes through a series of five tunnels carved right through the mountains surrounding the lake — an engineering marvel in its own right.</p>
+
+    <div class="gallery">
+      <img class="wide" src="img/atabadlake/wideview-atabad.jpg" alt="Attabad Lake wide view"/>
+      <img src="img/atabadlake/boatsatabad.jpg" alt="Boat on Attabad Lake"/>
+      <img src="img/atabadlake/sunsetview-atabad.jpg" alt="Attabad Lake sunset"/>
+    </div>
+
+    <h2>Top Attractions & Activities</h2>
+    <ul class="highlights-list">
+      <li><span class="ico">🚤</span><div><strong>Boat Rides</strong> – Enjoy scenic boat rides across the turquoise lake, offered by local boatmen. The reflections of the mountains on the water are stunning.</div></li>
+      <li><span class="ico">📸</span><div><strong>Photography Spots</strong> – Multiple viewpoints along the KKH offer world-class photography opportunities, especially at golden hour.</div></li>
+      <li><span class="ico">🚇</span><div><strong>KKH Tunnels</strong> – Five remarkable tunnels were carved through the mountains after the landslide. Driving through them is a unique experience.</div></li>
+      <li><span class="ico">🎣</span><div><strong>Fishing</strong> – The lake is stocked with trout and other fish. Local guides can arrange fishing trips.</div></li>
+      <li><span class="ico">🏕️</span><div><strong>Camping</strong> – Camp on the lakeside under the stars — the silence and scenery at night are absolutely magical.</div></li>
+    </ul>
+
+    <h2>Travel Tips</h2>
+    <div class="tips-grid">
+      <div class="tip-card"><div class="icon">🌤️</div><h6>Best Season</h6><p>May to October for calm weather. Boat rides are most enjoyable in June–August.</p></div>
+      <div class="tip-card"><div class="icon">🚗</div><h6>Getting There</h6><p>30 km from Karimabad on KKH. Takes about 30–40 minutes by car via the tunnels.</p></div>
+      <div class="tip-card"><div class="icon">💰</div><h6>Boat Rides</h6><p>Boat rides cost approximately PKR 500–1500 per person. Negotiate with local boatmen at the shore.</p></div>
+      <div class="tip-card"><div class="icon">⚠️</div><h6>Safety Note</h6><p>Always wear a life jacket on the boat. Water is cold and currents can be strong near tunnel exits.</p></div>
+    </div>
+  </div>
+
+  <div class="dest-sidebar">
+    <div class="info-box">
+      <h4>Quick Facts</h4>
+      <div class="info-row"><span class="label">Location</span><span class="val">Gojal, Upper Hunza</span></div>
+      <div class="info-row"><span class="label">Altitude</span><span class="val">2,638m (8,655 ft)</span></div>
+      <div class="info-row"><span class="label">Length</span><span class="val">~21 km</span></div>
+      <div class="info-row"><span class="label">Formed</span><span class="val">January 2010</span></div>
+      <div class="info-row"><span class="label">Best Time</span><span class="val">May – October</span></div>
+      <div class="info-row"><span class="label">From Karimabad</span><span class="val">30 km / 40 min</span></div>
+      <div class="info-row"><span class="label">Famous For</span><span class="val">Turquoise Water, Boats</span></div>
+    </div>
+    <div class="book-box">
+      <p>Visit Attabad Lake on our Hunza Valley Explorer tour package!</p>
+      <a href="tours.html">View Tour Packages</a>
+      <a href="contact.html">Book Now</a>
+      <div class="phone">📞 0316-9186572</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col"><h5>Golden Adventures</h5><p>Your trusted travel partner for Gilgit Baltistan, Pakistan.</p></div>
+    <div class="footer-col"><h5>Quick Links</h5><ul><li><a href="index.html">Home</a></li><li><a href="destinations.html">Destinations</a></li><li><a href="tours.html">Tours</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h5>Contact</h5><ul><li><a href="#">📍 Gilgit, Gilgit Baltistan</a></li><li><a href="tel:03169186572">📞 0316-9186572</a></li><li><a href="mailto:samiabba110@gmail.com">✉️ samiabba110@gmail.com</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">© 2025 Golden Adventures. All rights reserved.</div>
+</footer>
+<script>
+  function toggleMenu() {
+    const nav = document.getElementById('navLinks');
+    const btn = document.getElementById('hamburger');
+    nav.classList.toggle('open');
+    btn.classList.toggle('active');
+  }
+
+  // Close menu when a link is clicked
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('active');
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hunza Valley - Golden Adventures</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --cream:#fdf8f2; --sand:#f0e6d3; --brown:#8b5e3c; --dark:#2c1f14; --green:#4a7c59; --white:#ffffff; --border:#ddd0be; }
+    body { font-family:'Lato',sans-serif; background:var(--cream); color:var(--dark); }
+    nav { background:var(--white); border-bottom:2px solid var(--border); display:flex; justify-content:space-between; align-items:center; padding:0 40px; height:68px; position:sticky; top:0; z-index:100; }
+    .nav-logo { font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--brown); text-decoration:none; }
+    .nav-logo span { color:var(--green); }
+    .nav-links { display:flex; gap:32px; list-style:none; }
+    .nav-links a { text-decoration:none; color:var(--dark); font-size:0.95rem; font-weight:700; padding-bottom:4px; border-bottom:2px solid transparent; }
+    .nav-links a:hover { border-color:var(--brown); color:var(--brown); }
+
+    /* HERO */
+    .dest-hero { position:relative; height:480px; overflow:hidden; }
+    .dest-hero img { width:100%; height:100%; object-fit:cover; }
+    .dest-hero .overlay { position:absolute; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.55)); display:flex; flex-direction:column; justify-content:flex-end; padding:40px; }
+    .dest-hero .breadcrumb { font-size:0.82rem; color:rgba(255,255,255,0.8); margin-bottom:10px; }
+    .dest-hero .breadcrumb a { color:rgba(255,255,255,0.8); text-decoration:none; }
+    .dest-hero h1 { font-family:'Playfair Display',serif; font-size:3rem; color:#fff; margin-bottom:10px; }
+    .dest-hero .meta-row { display:flex; gap:20px; flex-wrap:wrap; }
+    .dest-hero .meta-row span { background:rgba(255,255,255,0.18); color:#fff; padding:5px 14px; border-radius:20px; font-size:0.85rem; backdrop-filter:blur(4px); }
+
+    /* BODY */
+    .dest-body { max-width:1100px; margin:0 auto; padding:60px 40px; display:grid; grid-template-columns:1fr 320px; gap:50px; }
+    .dest-main h2 { font-family:'Playfair Display',serif; font-size:1.7rem; margin-bottom:14px; margin-top:36px; color:var(--dark); }
+    .dest-main h2:first-child { margin-top:0; }
+    .dest-main p { font-size:0.97rem; color:#5a4a38; line-height:1.85; margin-bottom:14px; }
+    .divider { width:50px; height:3px; background:var(--brown); margin-bottom:16px; }
+
+    /* PHOTO GALLERY */
+    .gallery { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px; margin-bottom:36px; }
+    .gallery img { width:100%; height:180px; object-fit:cover; border-radius:7px; border:1px solid var(--border); }
+    .gallery img.wide { grid-column:span 2; height:240px; }
+
+    /* HIGHLIGHTS LIST */
+    .highlights-list { list-style:none; margin-bottom:24px; }
+    .highlights-list li { display:flex; gap:12px; align-items:flex-start; padding:10px 0; border-bottom:1px solid var(--border); font-size:0.93rem; color:#5a4a38; line-height:1.6; }
+    .highlights-list li span.ico { font-size:1.2rem; flex-shrink:0; }
+
+    /* SIDEBAR */
+    .info-box { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:24px; margin-bottom:20px; }
+    .info-box h4 { font-family:'Playfair Display',serif; font-size:1.1rem; margin-bottom:16px; }
+    .info-row { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--border); font-size:0.88rem; }
+    .info-row:last-child { border-bottom:none; }
+    .info-row .label { color:#8a7260; font-weight:700; }
+    .info-row .val { color:var(--dark); font-weight:400; text-align:right; }
+    .book-box { background:var(--brown); border-radius:10px; padding:24px; text-align:center; }
+    .book-box p { color:rgba(255,255,255,0.85); font-size:0.9rem; margin-bottom:16px; line-height:1.6; }
+    .book-box a { display:block; background:var(--white); color:var(--brown); padding:13px; border-radius:6px; font-weight:700; text-decoration:none; font-size:0.95rem; margin-bottom:10px; }
+    .book-box .phone { color:rgba(255,255,255,0.9); font-size:0.88rem; }
+
+    /* TIPS */
+    .tips-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:16px; }
+    .tip-card { background:var(--sand); border-radius:8px; padding:16px; }
+    .tip-card .icon { font-size:1.5rem; margin-bottom:8px; }
+    .tip-card h6 { font-weight:700; margin-bottom:4px; font-size:0.88rem; }
+    .tip-card p { font-size:0.82rem; color:#6b5440; line-height:1.5; }
+
+    footer { background:var(--dark); color:rgba(255,255,255,0.7); padding:50px 40px 24px; }
+    .footer-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:40px; margin-bottom:36px; }
+    .footer-col h5 { color:var(--white); font-family:'Playfair Display',serif; margin-bottom:16px; }
+    .footer-col ul { list-style:none; }
+    .footer-col ul li { margin-bottom:8px; }
+    .footer-col ul a { text-decoration:none; color:rgba(255,255,255,0.6); font-size:0.9rem; }
+    .footer-col p { font-size:0.9rem; line-height:1.7; }
+    .footer-bottom { border-top:1px solid rgba(255,255,255,0.1); padding-top:20px; text-align:center; font-size:0.85rem; color:rgba(255,255,255,0.4); }
+
+    @media(max-width:900px){ .dest-body { grid-template-columns:1fr; } }
+    @media(max-width:600px){ nav{padding:0 20px;} .nav-links{gap:16px;} .dest-hero{height:320px;} .dest-hero h1{font-size:2rem;} .dest-body{padding:36px 20px;} .gallery{grid-template-columns:1fr;} .gallery img.wide{grid-column:span 1;} .tips-grid{grid-template-columns:1fr;} }
+    /* HAMBURGER BUTTON */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--dark);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* HAMBURGER ACTIVE (X shape) */
+.hamburger.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* MOBILE STYLES */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-bottom: 2px solid var(--border);
+    padding: 16px 24px 24px;
+    gap: 0;
+    z-index: 99;
+  }
+  .nav-links.open {
+    display: flex;
+  }
+  .nav-links li {
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-links li:last-child {
+    border-bottom: none;
+  }
+  .nav-links a {
+    display: block;
+    padding: 14px 4px;
+    font-size: 1rem;
+  }
+}
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">Golden <span>Adventures</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="destinations.html">Destinations</a></li>
+    <li><a href="tours.html">Tours</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<div class="dest-hero">
+  <img src="img/hunza/hero-hunza.jpg" alt="Hunza Valley"/>
+  <div class="overlay">
+    <div class="breadcrumb"><a href="destinations.html" >← Destinations</a></div>
+    <h1>Hunza Valley</h1>
+    <div class="meta-row">
+      <span>📍 Hunza District, GB</span>
+      <span>🏷️ Valley</span>
+      <span>🕐 3-5 Days Ideal</span>
+      <span>📏 Altitude: 2,438m</span>
+    </div>
+  </div>
+</div>
+
+<div class="dest-body">
+  <div class="dest-main">
+    <div class="divider"></div>
+    <h2>About Hunza Valley</h2>
+    <p>Nestled in the heart of the Karakoram mountains in Gilgit Baltistan, Hunza Valley is one of the most breathtaking destinations in the entire world. Situated at an altitude of 2,438 meters, the valley is framed by towering snow-capped peaks including Rakaposhi (7,788m), Ultar Sar (7,388m), and Diran Peak — creating a dramatic natural amphitheater that leaves every visitor speechless.</p>
+    <p>The valley stretches approximately 100 km along the Hunza River and is home to several distinct communities, each with their own unique culture and tradition. The people of Hunza, known as Burusho, speak Burushaski — a language isolate with no known relatives in the world. The region is also home to some of Pakistan's most treasured historical monuments, including the 700-year-old Baltit Fort and the ancient Altit Fort.</p>
+    <p>Hunza is also world-famous for its spectacular cherry and apricot blossom seasons in spring, when the valley transforms into a dreamlike canvas of pink and white flowers against a backdrop of snowy mountains.</p>
+
+    <!-- GALLERY -->
+    <div class="gallery">
+      <img class="wide" src="img/hunza/hunzapanaroma.jpg" alt="Hunza Valley panorama"/>
+      <img src="img/hunza/baltitfort.jpg" alt="Baltit Fort Hunza"/>
+      <img src="img/hunza/karimabad-town.jpg" alt="Karimabad town"/>
+    </div>
+
+    <h2>Top Attractions</h2>
+    <ul class="highlights-list">
+      <li><span class="ico">🏯</span><div><strong>Baltit Fort</strong> - A UNESCO-nominated 700-year-old fort perched above Karimabad, offering panoramic valley views. Once the royal residence of Hunza's Mir (ruler).</div></li>
+      <li><span class="ico">🏰</span><div><strong>Altit Fort</strong> - The oldest surviving fort in Hunza (900 years old), sitting dramatically on a cliff above the Hunza River. Recently restored to its original glory.</div></li>
+      <li><span class="ico">👁️</span><div><strong>Eagle's Nest / Duikar</strong> - The highest viewpoint in Hunza at 3,200m, offering a sweeping 360° view of Rakaposhi, Ultar Sar, and the whole Hunza Valley.</div></li>
+      <li><span class="ico">💧</span><div><strong>Attabad Lake</strong> - Just 30 minutes from Karimabad, the stunning turquoise lake is a must-visit and perfect for boat rides.</div></li>
+      <li><span class="ico">🛍️</span><div><strong>Karimabad Bazaar</strong> - Shop for local handicrafts, dried apricots, gemstones, and traditional Hunza caps in the lively old market.</div></li>
+      <li><span class="ico">🧊</span><div><strong>Hoper & Shishper Glaciers</strong> - Accessible glaciers near the valley where visitors can hike across ancient ice formations.</div></li>
+    </ul>
+
+    <h2>Travel Tips</h2>
+    <div class="tips-grid">
+      <div class="tip-card"><div class="icon">🌸</div><h6>Best Season</h6><p>April-May for cherry blossoms. June-October for clear skies and trekking. Avoid January-February (heavy snow).</p></div>
+      <div class="tip-card"><div class="icon">🚗</div><h6>Getting There</h6><p>Fly Islamabad → Gilgit (1 hr), then drive 2 hrs to Karimabad. Or drive via KKH (12-14 hrs from Islamabad).</p></div>
+      <div class="tip-card"><div class="icon">🏨</div><h6>Accommodation</h6><p>Many guesthouses and hotels in Karimabad. Serena Hotel Hunza and Eagle's Nest Hotel are top picks.</p></div>
+      <div class="tip-card"><div class="icon">🍽️</div><h6>Local Food</h6><p>Try Chapshuro (meat pie), Diram Phitti, and Hunza Water (apricot-based drink). Apricots and walnuts are a must-buy.</p></div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="dest-sidebar">
+    <div class="info-box">
+      <h4>Quick Facts</h4>
+      <div class="info-row"><span class="label">Region</span><span class="val">Hunza District, GB</span></div>
+      <div class="info-row"><span class="label">Altitude</span><span class="val">2,438m (8,000 ft)</span></div>
+      <div class="info-row"><span class="label">Best Time</span><span class="val">April - October</span></div>
+      <div class="info-row"><span class="label">Ideal Stay</span><span class="val">3 - 5 Days</span></div>
+      <div class="info-row"><span class="label">Nearest City</span><span class="val">Gilgit (2 hrs drive)</span></div>
+      <div class="info-row"><span class="label">Language</span><span class="val">Burushaski, Urdu</span></div>
+      <div class="info-row"><span class="label">Famous For</span><span class="val">Forts, Blossoms, Views</span></div>
+    </div>
+    <div class="book-box">
+      <p>Ready to visit Hunza Valley? Book a guided tour with Golden Adventures today!</p>
+      <a href="tours.html">View Tour Packages</a>
+      <a href="contact.html">Contact Us</a>
+      <div class="phone">📞 0316-9186572</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col"><h5>Golden Adventures</h5><p>Your trusted travel partner for Gilgit Baltistan, Pakistan.</p></div>
+    <div class="footer-col"><h5>Quick Links</h5><ul><li><a href="index.html">Home</a></li><li><a href="destinations.html">Destinations</a></li><li><a href="tours.html">Tours</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h5>Contact</h5><ul><li><a href="#">📍 Gilgit, Gilgit Baltistan</a></li><li><a href="tel:03169186572">📞 0316-9186572</a></li><li><a href="mailto:samiabba110@gmail.com">✉️ samiabba110@gmail.com</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">© 2025 Golden Adventures. All rights reserved.</div>
+</footer>
+<script>
+  function toggleMenu() {
+    const nav = document.getElementById('navLinks');
+    const btn = document.getElementById('hamburger');
+    nav.classList.toggle('open');
+    btn.classList.toggle('active');
+  }
+
+  // Close menu when a link is clicked
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('active');
+    });
+  });
+</script>
+</body>
+</html>

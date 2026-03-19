@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tour Packages – Golden Adventures</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #fdf8f2; --sand: #f0e6d3; --brown: #8b5e3c; --dark: #2c1f14;
+      --green: #000000; --white: #ffffff; --border: #ddd0be;
+    }
+    body { font-family: 'Lato', sans-serif; background: var(--cream); color: var(--dark); }
+
+    nav {
+      background: var(--white); border-bottom: 2px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 40px; height: 68px; position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--brown); text-decoration: none; }
+    .nav-logo span { color: var(--green); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--dark); font-size: 0.95rem; font-weight: 700; letter-spacing: 0.5px; padding-bottom: 4px; border-bottom: 2px solid transparent; }
+    .nav-links a:hover, .nav-links a.active { border-color: var(--brown); color: var(--brown);transform: translateY(-10px); transition: 0.6s ease; }
+
+    .page-header {
+      background: linear-gradient(135deg, #e0efe5 0%, #f0e6d3 100%);
+      padding: 60px 40px; text-align: center;
+    }
+    .page-header .tag { font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--green); font-weight: 700; margin-bottom: 12px; }
+    .page-header h1 { font-family: 'Playfair Display', serif; font-size: 2.6rem; color: var(--dark); margin-bottom: 12px; }
+    .page-header p { color: #6b5440; font-size: 1rem; max-width: 540px; margin: 0 auto; line-height: 1.7; }
+    /* HAMBURGER BUTTON */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--dark);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* HAMBURGER ACTIVE (X shape) */
+.hamburger.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* MOBILE STYLES */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-bottom: 2px solid var(--border);
+    padding: 16px 24px 24px;
+    gap: 0;
+    z-index: 99;
+  }
+  .nav-links.open {
+    display: flex;
+  }
+  .nav-links li {
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-links li:last-child {
+    border-bottom: none;
+  }
+  .nav-links a {
+    display: block;
+    padding: 14px 4px;
+    font-size: 1rem;
+  }
+}
+.page-header{ background-image: url(img/skardu.jpg); background-size: cover;}
+
+    /* TOURS */
+    .tours-section { padding: 60px 40px; }
+    .divider { width: 50px; height: 3px; background: var(--brown); margin-bottom: 16px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 10px; }
+    .section-sub { color: #7a6855; margin-bottom: 40px; line-height: 1.7; }
+
+    .tours-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 28px; }
+
+    .tour-card { background: var(--white); border-radius: 10px; border: 1px solid var(--border); overflow: hidden; }
+    .tour-card:hover{transform: translateY(-5px); transition: 0.6s ease;}
+    .tour-card .thumb { height: 190px; display: flex; align-items: center; justify-content: center; font-size: 4.5rem; }
+    .th-1 { background: linear-gradient(135deg, #d6eaf8, #e8f4fd); }
+    .th-2 { background: linear-gradient(135deg, #d5f0e0, #e5f7ec); }
+    .th-3 { background: linear-gradient(135deg, #f0e6d3, #fdf3e7); }
+    .th-4 { background: linear-gradient(135deg, #e8d5f0, #f3e8fa); }
+    .th-5 { background: linear-gradient(135deg, #fde8d0, #fff0e5); }
+    .th-6 { background: linear-gradient(135deg, #d0ecf5, #e5f5fc); }
+
+    .tour-card .body { padding: 24px; }
+    .tour-card .popular-tag { display: inline-block; background: var(--brown); color: var(--white); font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; padding: 3px 10px; border-radius: 12px; margin-bottom: 12px; }
+    .tour-card h4 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 8px; }
+    .tour-card .desc { font-size: 0.9rem; color: #7a6855; line-height: 1.7; margin-bottom: 18px; }
+    .ch-1 img{width: 100%;
+  height:180px;
+  object-fit: cover;
+  object-position: center;
+  display: block;}
+    
+
+    .tour-details { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+    .detail-chip { background: var(--sand); padding: 6px 12px; border-radius: 16px; font-size: 0.82rem; color: var(--brown); font-weight: 700; }
+
+    .itinerary { border-top: 1px solid var(--border); padding-top: 18px; margin-bottom: 20px; }
+    .itinerary h6 { font-size: 0.82rem; letter-spacing: 1px; text-transform: uppercase; color: var(--green); font-weight: 700; margin-bottom: 10px; }
+    .itinerary ol { padding-left: 18px; }
+    .itinerary ol li { font-size: 0.88rem; color: #6b5440; margin-bottom: 5px; line-height: 1.5; }
+
+    .tour-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 18px; }
+    .price { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--brown); }
+    .price span { font-family: 'Lato', sans-serif; font-size: 0.8rem; color: #9a8470; font-weight: 400; }
+    .book-btn { background: var(--green); color: var(--white); padding: 10px 22px; border-radius: 4px; text-decoration: none; font-size: 0.88rem; font-weight: 700; }
+    .book-btn:hover { background:#7a6855 ; }
+
+    /* INCLUSIONS */
+    .inclusions { background: var(--sand); padding: 60px 40px; }
+    .inc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+    .inc-item { display: flex; align-items: flex-start; gap: 12px; background: var(--white); padding: 18px; border-radius: 8px; border: 1px solid var(--border); }
+    .inc-item .icon { font-size: 1.6rem; flex-shrink: 0; }
+    .inc-item div h6 { font-weight: 700; margin-bottom: 4px; font-size: 0.95rem; }
+    .inc-item div p { font-size: 0.85rem; color: #7a6855; line-height: 1.5; }
+
+    /* CTA BAND */
+    .cta-band { background: var(--brown); padding: 60px 40px; text-align: center; }
+    .cta-band h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--white); margin-bottom: 14px; }
+    .cta-band p { color: rgba(255,255,255,0.8); font-size: 1rem; margin-bottom: 28px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .cta-band a { display: inline-block; background: var(--white); color: var(--brown); padding: 14px 36px; border-radius: 4px; font-weight: 700; text-decoration: none; font-size: 0.95rem; }
+    .btn-cta:hover{transform: translateY(-5px); transition: 0.6s ease; color: white; background-color: #000000;}
+
+    footer { background: var(--dark); color: rgba(255,255,255,0.7); padding: 50px 40px 24px; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 40px; margin-bottom: 36px; }
+    .footer-col h5 { color: var(--white); font-family: 'Playfair Display', serif; margin-bottom: 16px; font-size: 1.05rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 8px; }
+    .footer-col ul a { text-decoration: none; color: rgba(255,255,255,0.6); font-size: 0.9rem; }
+    .footer-col ul a:hover { color: var(--white); }
+    .footer-col p { font-size: 0.9rem; line-height: 1.7; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center; font-size: 0.85rem; color: rgba(255,255,255,0.4); }
+
+    @media(max-width:700px){
+      nav { padding: 0 20px; } .nav-links { gap: 16px; }
+      .tours-section, .inclusions, .cta-band { padding: 40px 20px; }
+       .page-header{background-size: 400% 500%}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Golden <span>Adventures</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="destinations.html">Destinations</a></li>
+    <li><a href="tours.html">Tours</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<div class="page-header">
+  <div class="tag">Our Packages</div>
+  <h1>Tour Packages</h1>
+  <p>Carefully designed itineraries to make every trip to Gilgit Baltistan an experience you'll cherish for a lifetime.</p>
+</div>
+
+<section class="tours-section">
+  <div class="divider"></div>
+  <h2 class="section-title">Choose Your Adventure</h2>
+  <p class="section-sub">All packages include accommodation, transport, and a professional local guide.</p>
+
+  <div class="tours-grid">
+
+    <!-- Tour 1 -->
+    <div class="tour-card">
+      <div class="ch-1"><img src="img/hunza.jpg" alt="">
+      </div>
+      <div class="body">
+        <span class="popular-tag">⭐ Most Popular</span>
+        <h4>Hunza Valley Explorer</h4>
+        <p class="desc">Explore the full beauty of Hunza Valley with visits to Baltit Fort, Altit Fort, Eagle's Nest viewpoint, and the stunning Attabad Lake.</p>
+        <div class="tour-details">
+          <span class="detail-chip">🗓 6 Days / 5 Nights</span>
+          <span class="detail-chip">👥 Group or Private</span>
+          <span class="detail-chip">🥾 Easy to Moderate</span>
+        </div>
+        <div class="itinerary">
+          <h6>Itinerary Highlights</h6>
+          <ol>
+            <li>Day 1: Arrival in Gilgit, drive to Karimabad</li>
+            <li>Day 2: Baltit Fort, Altit Fort, Local Bazaar</li>
+            <li>Day 3: Eagle's Nest viewpoint, Duikar</li>
+            <li>Day 4: Attabad Lake boat ride</li>
+            <li>Day 5: Khunjerab Pass (4,693m)</li>
+            <li>Day 6: Return journey</li>
+          </ol>
+        </div>
+        <div class="tour-footer">
+          <div class="price">PKR 45,000 <span>/person</span></div>
+          <a href="contact.html" class="book-btn">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tour 2 -->
+    <div class="tour-card">
+      <div class="ch-1"><img src="img/skardu.jpg" alt=""></div>
+      <div class="body">
+        <h4>Skardu & K2 Base Camp</h4>
+        <p class="desc">An adventure package for trekking enthusiasts. Trek toward K2 base camp, visit Deosai Plains, and discover Shangrila Resort.</p>
+        <div class="tour-details">
+          <span class="detail-chip">🗓 10 Days / 9 Nights</span>
+          <span class="detail-chip">👥 Group</span>
+          <span class="detail-chip">🥾 Challenging</span>
+        </div>
+        <div class="itinerary">
+          <h6>Itinerary Highlights</h6>
+          <ol>
+            <li>Day 1–2: Fly to Skardu, acclimatize</li>
+            <li>Day 3: Satpara Lake & Cold Desert</li>
+            <li>Day 4–5: Deosai National Park</li>
+            <li>Day 6–9: K2 Base Camp Trek</li>
+            <li>Day 10: Return to Skardu</li>
+          </ol>
+        </div>
+        <div class="tour-footer">
+          <div class="price">PKR 80,000 <span>/person</span></div>
+          <a href="contact.html" class="book-btn">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tour 3 -->
+    <div class="tour-card">
+      <div class="ch-1"><img src="img/fairymedow.jpg" alt=""></div>
+      <div class="body">
+        <h4>Fairy Meadows Trek</h4>
+        <p class="desc">A short but iconic trek to the meadows at the base of Nanga Parbat. Perfect for first-time trekkers wanting a taste of GB's wild beauty.</p>
+        <div class="tour-details">
+          <span class="detail-chip">🗓 4 Days / 3 Nights</span>
+          <span class="detail-chip">👥 Private or Group</span>
+          <span class="detail-chip">🥾 Moderate</span>
+        </div>
+        <div class="itinerary">
+          <h6>Itinerary Highlights</h6>
+          <ol>
+            <li>Day 1: Rawalpindi to Raikot Bridge</li>
+            <li>Day 2: Jeep ride + hike to Fairy Meadows</li>
+            <li>Day 3: Explore meadows, Nanga Parbat views</li>
+            <li>Day 4: Return journey</li>
+          </ol>
+        </div>
+        <div class="tour-footer">
+          <div class="price">PKR 28,000 <span>/person</span></div>
+          <a href="contact.html" class="book-btn">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tour 4 -->
+    <div class="tour-card">
+      <div class="ch-1"><img src="img/naltar.jpg" alt=""></div>
+      <div class="body">
+        <span class="popular-tag">🆕 New Package</span>
+        <h4>Naltar Valley & Lakes</h4>
+        <p class="desc">Discover the three naturally colored lakes of Naltar Valley, hike through lush pine forests, and enjoy camping under the stars.</p>
+        <div class="tour-details">
+          <span class="detail-chip">🗓 3 Days / 2 Nights</span>
+          <span class="detail-chip">👥 Group</span>
+          <span class="detail-chip">🥾 Easy</span>
+        </div>
+        <div class="itinerary">
+          <h6>Itinerary Highlights</h6>
+          <ol>
+            <li>Day 1: Gilgit to Naltar, settle in</li>
+            <li>Day 2: Naltar Lakes hike, forest walks</li>
+            <li>Day 3: Return to Gilgit</li>
+          </ol>
+        </div>
+        <div class="tour-footer">
+          <div class="price">PKR 18,000 <span>/person</span></div>
+          <a href="contact.html" class="book-btn">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tour 5 -->
+    <div class="tour-card">
+      <div class="ch-1"><img src="img/blossam.jpg" alt="" ></div>
+      <div class="body">
+        <h4>Cherry Blossom Special</h4>
+        <p class="desc">A seasonal tour in March–April to witness the magical cherry blossom bloom in Hunza, Shigar, and the surrounding valleys.</p>
+        <div class="tour-details">
+          <span class="detail-chip">🗓 5 Days / 4 Nights</span>
+          <span class="detail-chip">👥 Private or Group</span>
+          <span class="detail-chip">📅 March – April Only</span>
+        </div>
+        <div class="itinerary">
+          <h6>Itinerary Highlights</h6>
+          <ol>
+            <li>Day 1: Arrive Gilgit, drive to Hunza</li>
+            <li>Day 2: Karimabad cherry blossom walk</li>
+            <li>Day 3: Shigar Valley and Fort</li>
+            <li>Day 4: Hoper Glacier visit</li>
+            <li>Day 5: Return</li>
+          </ol>
+        </div>
+        <div class="tour-footer">
+          <div class="price">PKR 35,000 <span>/person</span></div>
+          <a href="contact.html" class="book-btn">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tour 6 -->
+    <div class="tour-card">
+      <div class="ch-1"><img src="img/khunjarab.png" alt=""></div>
+      <div class="body">
+        <h4>KKH Grand Road Trip</h4>
+        <p class="desc">A complete road trip along the legendary Karakoram Highway — from Islamabad all the way to the Chinese border at Khunjerab Pass.</p>
+        <div class="tour-details">
+          <span class="detail-chip">🗓 12 Days / 11 Nights</span>
+          <span class="detail-chip">👥 Private</span>
+          <span class="detail-chip">🚌 Road Journey</span>
+        </div>
+        <div class="itinerary">
+          <h6>Itinerary Highlights</h6>
+          <ol>
+            <li>Day 1–2: Islamabad to Chilas</li>
+            <li>Day 3–4: Fairy Meadows detour</li>
+            <li>Day 5–8: Gilgit & Hunza exploration</li>
+            <li>Day 9: Khunjerab Pass border</li>
+            <li>Day 10–12: Return journey stops</li>
+          </ol>
+        </div>
+        <div class="tour-footer">
+          <div class="price">PKR 95,000 <span>/person</span></div>
+          <a href="contact.html" class="book-btn">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- INCLUSIONS -->
+<section class="inclusions">
+  <div class="divider"></div>
+  <h2 class="section-title">What's Included in Every Package</h2>
+  <p class="section-sub">All our packages come fully equipped so you can focus on enjoying the journey.</p>
+  <div class="inc-grid">
+    <div class="inc-item"><div class="icon">🏨</div><div><h6>Accommodation</h6><p>Comfortable guesthouses or hotels at every stop.</p></div></div>
+    <div class="inc-item"><div class="icon">🚐</div><div><h6>Transport</h6><p>Private 4x4 or minibus for all group transfers.</p></div></div>
+    <div class="inc-item"><div class="icon">🧭</div><div><h6>Local Guide</h6><p>Experienced bilingual guide throughout the trip.</p></div></div>
+    <div class="inc-item"><div class="icon">🍽️</div><div><h6>Meals</h6><p>Breakfast and dinner included at all locations.</p></div></div>
+    <div class="inc-item"><div class="icon">🎫</div><div><h6>Entry Fees</h6><p>All park permits and monument entry fees covered.</p></div></div>
+    <div class="inc-item"><div class="icon">🛡️</div><div><h6>Travel Insurance</h6><p>Basic travel and emergency insurance included.</p></div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-band">
+  <h2>Ready to Plan Your Trip?</h2>
+  <p>Contact our team and we'll create a custom itinerary tailored just for you.</p>
+  <a href="contact.html" class="btn-cta">Get in Touch</a>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h5>Golden Adventures</h5>
+      <p>Your trusted travel partner for exploring the stunning landscapes of Gilgit Baltistan, Pakistan.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Quick Links</h5>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="destinations.html">Destinations</a></li>
+        <li><a href="tours.html">Tour Packages</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Popular Tours</h5>
+      <ul>
+        <li><a href="#">Hunza Valley Explorer</a></li>
+        <li><a href="#">Skardu & K2 Base Camp</a></li>
+        <li><a href="#">Fairy Meadows Trek</a></li>
+        <li><a href="#">KKH Grand Road Trip</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="#">📍 Gilgit, Gilgit Baltistan</a></li>
+        <li><a href="tel:03169186572">📞 0316-9186572 (Call &amp; WhatsApp)</a></li>
+        <li><a href="#">✉️ <span class="__cf_email__" data-cfemail="99f0f7fff6d9fff8ebf1f8f7edebf8effcf5eab7e9f2">[email&#160;protected]</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <script>
+  function toggleMenu() {
+    const nav = document.getElementById('navLinks');
+    const btn = document.getElementById('hamburger');
+    nav.classList.toggle('open');
+    btn.classList.toggle('active');
+  }
+
+  // Close menu when a link is clicked
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('active');
+    });
+  });
+</script>
+  </body>
+  </html>
